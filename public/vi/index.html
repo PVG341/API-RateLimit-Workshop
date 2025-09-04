@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="vi" class="js csstransforms3d">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head><script src="/API-RateLimit-Workshop/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=API-RateLimit-Workshop/livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.147.8">
-    <meta name="description" content="">
+    <meta name="description" content="Manage API Rate Limit And Throttling With Lambda Authorizer Workshop">
 <meta name="author" content="journeyoftheaverageguy@gmail.com">
 
-    <link rel="icon" href="/images/favicon.png" type="image/png">
+    <link rel="icon" href="../images/favicon.png" type="image/png">
 
-    <title>Thiết lập Tài Khoản AWS :: Tạo mới tài khoản AWS</title>
+    <title>API Rate Limit và Throttling với Lambda Authorizer :: Quản lý Rate Limit và Throttling của API với Lambda Authorizer</title>
 
     
-    <link href="/css/nucleus.css?1756920139" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1756920139" rel="stylesheet">
-    <link href="/css/hybrid.css?1756920139" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1756920139" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1756920139" rel="stylesheet">
-    <link href="/css/auto-complete.css?1756920139" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1756920139" rel="stylesheet">
-    <link href="/css/theme.css?1756920139" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1756920139" rel="stylesheet">
+    <link href="../css/nucleus.css?1757016470" rel="stylesheet">
+    <link href="../css/fontawesome-all.min.css?1757016470" rel="stylesheet">
+    <link href="../css/hybrid.css?1757016470" rel="stylesheet">
+    <link href="../css/featherlight.min.css?1757016470" rel="stylesheet">
+    <link href="../css/perfect-scrollbar.min.css?1757016470" rel="stylesheet">
+    <link href="../css/auto-complete.css?1757016470" rel="stylesheet">
+    <link href="../css/atom-one-dark-reasonable.css?1757016470" rel="stylesheet">
+    <link href="../css/theme.css?1757016470" rel="stylesheet">
+    <link href="../css/hugo-theme.css?1757016470" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1756920139" rel="stylesheet">
+    <link href="../css/theme-workshop.css?1757016470" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1756920139"></script>
+    <script src="../js/jquery-3.3.1.min.js?1757016470"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -36,14 +36,14 @@
     </style>
     
   </head>
-  <body class="" data-url="/vi/">
+  <body class="" data-url="../vi/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
 
   <div id="header-wrapper">
     <div id="header">
-      <a id="logo" href="/">
+      <a id="logo" href="../">
 
 <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f90;fill-rule:evenodd;}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"></path><path class="cls-2" d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"></path><path class="cls-2" d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"></path></svg>
 
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1756920139"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1756920139"></script>
+<script type="text/javascript" src="../js/lunr.min.js?1757016470"></script>
+<script type="text/javascript" src="../js/auto-complete.js?1757016470"></script>
 <script type="text/javascript">
     
-        var baseurl = "\/\/localhost:1313\/\/vi";
+        var baseurl = "http:\/\/localhost:1313\/API-RateLimit-Workshop\/\/vi";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1756920139"></script>
+<script type="text/javascript" src="../js/search.js?1757016470"></script>
 
     
   </div>
@@ -82,13 +82,13 @@
  
   
     
-    <li data-nav-id="/vi/1-create-new-aws-account/" title="Tạo mới tài khoản AWS" class="dd-item 
+    <li data-nav-id="/vi/1-introduction/" title="Giới thiệu" class="dd-item 
         
         
         
         ">
-      <a href="/vi/1-create-new-aws-account/">
-           <b> 1. </b> Tạo mới tài khoản AWS
+      <a href="../vi/1-introduction/">
+           <b> 1. </b> Giới thiệu
           
             <i class="fas fa-check read-icon"></i>
           
@@ -108,13 +108,13 @@
  
   
     
-    <li data-nav-id="/vi/2-mfa-setup-for-aws-user-root/" title="MFA cho Tài khoản AWS" class="dd-item 
+    <li data-nav-id="/vi/2-preparation-steps/" title="Các bước chuẩn bị" class="dd-item 
         
         
         
         ">
-      <a href="/vi/2-mfa-setup-for-aws-user-root/">
-           <b> 2. </b> MFA cho Tài khoản AWS
+      <a href="../vi/2-preparation-steps/">
+           <b> 2. </b> Các bước chuẩn bị
           
             <i class="fas fa-check read-icon"></i>
           
@@ -139,13 +139,13 @@
  
   
     
-    <li data-nav-id="/vi/2-mfa-setup-for-aws-user-root/1-virtual-mfa-device/" title="Thiết bị MFA ảo" class="dd-item 
+    <li data-nav-id="/vi/2-preparation-steps/1.1-create-basic-lambda-function/" title="Tạo các hàm Lambda cơ bản" class="dd-item 
         
         
         
         ">
-      <a href="/vi/2-mfa-setup-for-aws-user-root/1-virtual-mfa-device/">
-           <b> 2.1 </b> Thiết bị MFA ảo
+      <a href="../vi/2-preparation-steps/1.1-create-basic-lambda-function/">
+           <b> 2.1 </b> Tạo các hàm Lambda cơ bản
           
             <i class="fas fa-check read-icon"></i>
           
@@ -167,41 +167,13 @@
  
   
     
-    <li data-nav-id="/vi/2-mfa-setup-for-aws-user-root/2-u2f-security-key/" title="Khóa bảo mật U2F" class="dd-item 
+    <li data-nav-id="/vi/2-preparation-steps/1.2-create-iam-role/" title="Tạo IAM Role" class="dd-item 
         
         
         
         ">
-      <a href="/vi/2-mfa-setup-for-aws-user-root/2-u2f-security-key/">
-           <b> 2.2 </b> Khóa bảo mật U2F
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/2-mfa-setup-for-aws-user-root/3-other-hardware-mfa-device/" title="Thiết bị MFA cứng" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/2-mfa-setup-for-aws-user-root/3-other-hardware-mfa-device/">
-           <b> 2.3 </b> Thiết bị MFA cứng
+      <a href="../vi/2-preparation-steps/1.2-create-iam-role/">
+           <b> 2.1 </b> Tạo IAM Role
           
             <i class="fas fa-check read-icon"></i>
           
@@ -230,13 +202,135 @@
  
   
     
-    <li data-nav-id="/vi/3-create-admin-user-and-group/" title="Tạo Admin Group và Admin User" class="dd-item 
+    <li data-nav-id="/vi/3-create-api-usage-plan-api-key/" title="Tạo API, Usage Plan, API Key" class="dd-item 
         
         
         
         ">
-      <a href="/vi/3-create-admin-user-and-group/">
-           <b> 3. </b> Tạo Admin Group và Admin User
+      <a href="../vi/3-create-api-usage-plan-api-key/">
+           <b> 3. </b> Tạo API, Usage Plan, API Key
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-create-api-usage-plan-api-key/3.1-create-api/" title="Tạo API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../vi/3-create-api-usage-plan-api-key/3.1-create-api/">
+           <b> 3.1 </b> Tạo API
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-create-api-usage-plan-api-key/3.2-create-usage-plan/" title="Tạo Usage Plan" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../vi/3-create-api-usage-plan-api-key/3.2-create-usage-plan/">
+           <b> 3.2 </b> Tạo Usage Plan
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-create-api-usage-plan-api-key/3.3-create-api-key/" title="Tạo API Key" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../vi/3-create-api-usage-plan-api-key/3.3-create-api-key/">
+           <b> 3.3 </b> Tạo API Key
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-create_authorizer/" title="Tạo Authorizer" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../vi/4-create_authorizer/">
+           <b> 4. </b> Tạo Authorizer
           
             <i class="fas fa-check read-icon"></i>
           
@@ -256,13 +350,227 @@
  
   
     
-    <li data-nav-id="/vi/4-verify-new-account/" title="Hỗ trợ Xác thực Tài khoản" class="dd-item 
+    <li data-nav-id="/vi/5-create-eventbridge-schedule/" title="Tạo EventBridge Schedule" class="dd-item 
         
         
         
         ">
-      <a href="/vi/4-verify-new-account/">
-           <b> 4. </b> Hỗ trợ Xác thực Tài khoản
+      <a href="../vi/5-create-eventbridge-schedule/">
+           <b> 5. </b> Tạo EventBridge Schedule
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-create-eventbridge-schedule/5.1-create-ratelimitcanary-function/" title="Tạo Lambda quản lý Stage API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../vi/5-create-eventbridge-schedule/5.1-create-ratelimitcanary-function/">
+           <b> 5.1 </b> Tạo Lambda quản lý Stage API
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-create-eventbridge-schedule/5.2-create-eventbridge-schedule/" title="Tạo EventBridge Schedule" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../vi/5-create-eventbridge-schedule/5.2-create-eventbridge-schedule/">
+           <b> 5.2 </b> Tạo EventBridge Schedule
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/6-create-cloudwatch-alarm/" title="Tạo Cloudwatch Alarm" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../vi/6-create-cloudwatch-alarm/">
+           <b> 6. </b> Tạo Cloudwatch Alarm
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/6-create-cloudwatch-alarm/6.1-create-function-forcechangelimit/" title="Tạo Lambda Function ForceChangeLimit" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../vi/6-create-cloudwatch-alarm/6.1-create-function-forcechangelimit/">
+           <b> 6.1 </b> Tạo Lambda Function ForceChangeLimit
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/6-create-cloudwatch-alarm/6.2-create-alarm/" title="Tạo Cloudwatch Alarm và Dashboard" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../vi/6-create-cloudwatch-alarm/6.2-create-alarm/">
+           <b> 6. </b> Tạo Cloudwatch Alarm và Dashboard
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/7-hosting-static-web-with-s3/" title="Hosting web tĩnh với S3 Bucket" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../vi/7-hosting-static-web-with-s3/">
+           <b> 7. </b> Hosting web tĩnh với S3 Bucket
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/8-clean-up/" title="Dọn dẹp tài nguyên" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../vi/8-clean-up/">
+           <b> 8. </b> Dọn dẹp tài nguyên
           
             <i class="fas fa-check read-icon"></i>
           
@@ -313,7 +621,7 @@
                   
                     
                     
-                      <option id="en" value="//localhost:1313/">English</option>
+                      <option id="en" value="http://localhost:1313/API-RateLimit-Workshop/">English</option>
                     
                   
               
@@ -327,7 +635,7 @@
                   
                     
                     
-                      <option id="vi" value="//localhost:1313/vi/" selected>Tiếng Việt</option>
+                      <option id="vi" value="http://localhost:1313/API-RateLimit-Workshop/vi/" selected>Tiếng Việt</option>
                     
                   
               
@@ -404,31 +712,20 @@
 </span>
 
  
-<h1 id="tạo-tài-khoản-aws-đầu-tiên">Tạo tài khoản AWS đầu tiên</h1>
-<h4 id="tổng-quan">Tổng quan</h4>
-<p>Trong bài lab đầu tiên này, bạn sẽ tạo mới <strong>tài khoản AWS</strong> đầu tiên của mình, tạo <strong>MFA</strong> (Multi-factor Authentication) để gia tăng bảo mật tài khoản của bạn. Bước tiếp theo bạn sẽ tạo <strong>Admin Group</strong>, <strong>Admin User</strong> để quản lý quyền truy cập vào các tài nguyên trong tài khoản của mình thay vì sử dụng user root.<br>
-Cuối cùng, nếu quá trình xác thực tài khoản của bạn có vấn đề, bạn sẽ được hướng dẫn hỗ trợ xác thực tài khoản với <strong>AWS Support</strong>.</p>
-<h4 id="tài-khoản-aws-aws-account">Tài khoản AWS (AWS Account)</h4>
-<p><strong>Tài khoản AWS</strong> là phương tiện để bạn có thể truy cập và sử dụng những tài nguyên và dịch vụ của AWS. Theo mặc định, mỗi tài khoản AWS sẽ có một <em>root user</em>. <em>Root user</em> có toàn quyền với tài khoản AWS của bạn, và quyền hạn của root user không thể bị giới hạn. Nếu bạn mới sử dụng tài khoản AWS lần đầu tiên, bạn sẽ truy cập vào tài khoản dưới danh nghĩa của <em>root user</em>.</p>
-<p><img src="/images/1/0001.png?featherlight=false&amp;width=90pc" alt="Create Account"></p>
-
-<div class="notices note" ><p>Chính vì quyền hạn của <strong>root user</strong> không thể bị giới hạn, AWS khuyên bạn không nên sử dụng trực tiếp <em>root user</em> cho bất kỳ công tác nào. Thay vào đó, bạn nên tạo ra một <em>IAM User</em> và trao quyền quản trị cho <em>IAM User</em> đó để dễ dàng quản lý và giảm thiểu rủi ro.</p>
-</div>
-
-<h4 id="mfa-multi-factor-authentication">MFA (Multi-factor Authentication)</h4>
-<p><strong>MFA</strong> là một tính năng được sử dụng để gia tăng bảo mật của tài khoản AWS. Nếu MFA được kích hoạt, bạn sẽ phải nhập mã OTP (One-time Password) mỗi lần bạn đăng nhập vào tài khoản AWS.</p>
-<h4 id="iam-group">IAM Group</h4>
-<p><strong>IAM Group</strong>  là một công cụ quản lý người dùng (<em>IAM User</em>) của AWS. Một IAM Group có thể chứa nhiều IAM User. Các IAM User ở trong một IAM Group đều hưởng chung quyền hạn mà IAM Group đó được gán cho.</p>
-<h4 id="iam-user">IAM User</h4>
-<p><strong>IAM User</strong> là một đơn vị người dùng của AWS. Khi bạn đăng nhập vào AWS, bạn sẽ phải đăng nhập dưới danh nghĩa của một IAM User. Nếu bạn mới đăng nhập vào AWS lần đầu tiên, bạn sẽ đăng nhập dưới danh nghĩa của <em>root user</em> (tạm dịch là người dùng gốc). Ngoài <em>root user</em> ra, bạn có thể tạo ra nhiều IAM User khác để cho phép người khác truy cập <strong>dài hạn</strong> vào tài nguyên AWS trong tài khoản AWS của bạn.</p>
-<h4 id="aws-support">AWS Support</h4>
-<p><strong>AWS Support</strong> là một đơn vị cung cấp các dịch vụ hỗ trợ khách hàng của AWS.</p>
-<h4 id="nội-dung-chính">Nội dung chính</h4>
+<h2 id="tổng-quan">Tổng quan</h2>
+<p>Đây là workshop về API Rate Limiting và Throttling trên AWS sử dụng Lambda Authorizers để kiểm soát truy cập và bảo vệ hệ thống API. Trong đó, Lambda Authorizers được xây dựng nhằm thực thi custom rate limiting logic, cho phép áp dụng giới hạn động (dynamic limits) dựa trên loại người dùng. Tiếp theo, Xây dựng API dựa vào AWS API Gateway, thiết lập Resource, Method, Usage Plan và API Key. Tích hợp với CloudWatch, EventBridge để thiết lập monitoring và alerting, giúp phát hiện sớm các bất thường và đưa ra cảnh báo kịp thời.</p>
+<p><a href="https://aws.amazon.com/support/">Project Test Link</a></p>
+<p><img src="../images/1/0001.png?featherlight=false&amp;width=90pc" alt="AWS Support"></p>
+<p><strong>Nội dung:</strong></p>
 <ol>
-<li><a href="/vi/1-create-new-aws-account/">Tạo tài khoản AWS</a></li>
-<li><a href="/vi/2-mfa-setup-for-aws-user-root/">Thiết lập MFA cho tài khoản AWS (Root)</a></li>
-<li><a href="/vi/3-create-admin-user-and-group/">Tài khoản và Nhóm Admin</a></li>
-<li><a href="/vi/4-verify-new-account/">Hỗ trợ Xác thực Tài khoản</a></li>
+<li><a href="../vi/1-introduction/">Giới thiệu</a></li>
+<li><a href="../vi/2-preparation-steps/">Các bước chuẩn bị</a></li>
+<li><a href="../vi/3-create-api-usage-plan-api-key/">Tạo API, Usage Plan, API Key</a></li>
+<li><a href="4-create-authorizer/">Tạo Authorizer</a></li>
+<li><a href="../vi/5-create-eventbridge-schedule/">Tạo EventBridge Schedule</a></li>
+<li><a href="../vi/6-create-cloudwatch-alarm/">Tạo CloudWatch Alarm</a></li>
+<li><a href="../vi/7-hosting-static-web-with-s3/">Host Static Web bằng S3</a></li>
+<li><a href="../vi/8-clean-up/">Dọn dẹp tài nguyên</a></li>
 </ol>
 	
   
@@ -524,6 +821,172 @@ Cuối cùng, nếu quá trình xác thực tài khoản của bạn có vấn �
             
         
                     
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
                         
             
             
@@ -585,7 +1048,7 @@ Cuối cùng, nếu quá trình xác thực tài khoản của bạn có vấn �
 	 
 		
 		
-			<a class="nav nav-next" href="/vi/1-create-new-aws-account/" title="Tạo mới tài khoản AWS" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="../vi/1-introduction/" title="Giới thiệu" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -595,19 +1058,19 @@ Cuối cùng, nếu quá trình xác thực tài khoản của bạn có vấn �
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1756920139"></script>
-    <script src="/js/perfect-scrollbar.min.js?1756920139"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1756920139"></script>
-    <script src="/js/jquery.sticky.js?1756920139"></script>
-    <script src="/js/featherlight.min.js?1756920139"></script>
-    <script src="/js/highlight.pack.js?1756920139"></script>
+    <script src="../js/clipboard.min.js?1757016471"></script>
+    <script src="../js/perfect-scrollbar.min.js?1757016471"></script>
+    <script src="../js/perfect-scrollbar.jquery.min.js?1757016471"></script>
+    <script src="../js/jquery.sticky.js?1757016471"></script>
+    <script src="../js/featherlight.min.js?1757016471"></script>
+    <script src="../js/highlight.pack.js?1757016471"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1756920139"></script>
-    <script src="/js/learn.js?1756920139"></script>
-    <script src="/js/hugo-learn.js?1756920139"></script>
+    <script src="../js/modernizr.custom-3.6.0.js?1757016471"></script>
+    <script src="../js/learn.js?1757016471"></script>
+    <script src="../js/hugo-learn.js?1757016471"></script>
 
-    <link href="/mermaid/mermaid.css?1756920139" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1756920139"></script>
+    <link href="../mermaid/mermaid.css?1757016471" rel="stylesheet" />
+    <script src="../mermaid/mermaid.js?1757016471"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

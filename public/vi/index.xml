@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Thiết lập Tài Khoản AWS on Tạo mới tài khoản AWS</title>
-    <link>//localhost:1313/vi/</link>
-    <description>Recent content in Thiết lập Tài Khoản AWS on Tạo mới tài khoản AWS</description>
+    <title>API Rate Limit và Throttling với Lambda Authorizer on Quản lý Rate Limit và Throttling của API với Lambda Authorizer</title>
+    <link>http://localhost:1313/API-RateLimit-Workshop/vi/</link>
+    <description>Recent content in API Rate Limit và Throttling với Lambda Authorizer on Quản lý Rate Limit và Throttling của API với Lambda Authorizer</description>
     <generator>Hugo</generator>
     <language>vi</language>
     <lastBuildDate></lastBuildDate>
-    <atom:link href="//localhost:1313/vi/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/API-RateLimit-Workshop/vi/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

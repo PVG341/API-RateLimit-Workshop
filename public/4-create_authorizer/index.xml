@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MFA for AWS Accounts on Manage API Rate Limit And Throttling With Lambda Authorizer</title>
+    <link>http://localhost:1313/API-RateLimit-Workshop/4-create_authorizer/</link>
+    <description>Recent content in MFA for AWS Accounts on Manage API Rate Limit And Throttling With Lambda Authorizer</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="http://localhost:1313/API-RateLimit-Workshop/4-create_authorizer/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

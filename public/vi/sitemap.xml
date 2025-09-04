@@ -2,132 +2,152 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>//localhost:1313/vi/1-create-new-aws-account/</loc>
+    <loc>http://localhost:1313/API-RateLimit-Workshop/vi/</loc>
     <lastmod>2025-09-03T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/1-create-new-aws-account/"
+                href="http://localhost:1313/API-RateLimit-Workshop/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/1-create-new-aws-account/"
+                href="http://localhost:1313/API-RateLimit-Workshop/vi/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/2-mfa-setup-for-aws-user-root/1-virtual-mfa-device/</loc>
+    <loc>http://localhost:1313/API-RateLimit-Workshop/vi/1-introduction/</loc>
     <lastmod>2025-09-03T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/2-mfa-setup-for-aws-user-root/1-virtual-mfa-device/"
+                href="http://localhost:1313/API-RateLimit-Workshop/1-introduction/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/2-mfa-setup-for-aws-user-root/1-virtual-mfa-device/"
+                href="http://localhost:1313/API-RateLimit-Workshop/vi/1-introduction/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/</loc>
+    <loc>http://localhost:1313/API-RateLimit-Workshop/vi/3-create-api-usage-plan-api-key/3.1-create-api/</loc>
+    <lastmod>2025-09-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/API-RateLimit-Workshop/vi/2-preparation-steps/1.1-create-basic-lambda-function/</loc>
     <lastmod>2025-09-03T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/"
+                href="http://localhost:1313/API-RateLimit-Workshop/2-preparation-steps/1.1-create-basic-lambda-function/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/"
+                href="http://localhost:1313/API-RateLimit-Workshop/vi/2-preparation-steps/1.1-create-basic-lambda-function/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/2-mfa-setup-for-aws-user-root/2-u2f-security-key/</loc>
+    <loc>http://localhost:1313/API-RateLimit-Workshop/vi/2-preparation-steps/1.2-create-iam-role/</loc>
     <lastmod>2025-09-03T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/2-mfa-setup-for-aws-user-root/2-u2f-security-key/"
+                href="http://localhost:1313/API-RateLimit-Workshop/2-preparation-steps/1.2-create-iam-role/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/2-mfa-setup-for-aws-user-root/2-u2f-security-key/"
+                href="http://localhost:1313/API-RateLimit-Workshop/vi/2-preparation-steps/1.2-create-iam-role/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/2-mfa-setup-for-aws-user-root/</loc>
+    <loc>http://localhost:1313/API-RateLimit-Workshop/vi/6-create-cloudwatch-alarm/6.1-create-function-forcechangelimit/</loc>
+    <lastmod>2025-09-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/API-RateLimit-Workshop/vi/5-create-eventbridge-schedule/5.1-create-ratelimitcanary-function/</loc>
+    <lastmod>2025-09-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/API-RateLimit-Workshop/vi/2-preparation-steps/</loc>
     <lastmod>2025-09-03T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/2-mfa-setup-for-aws-user-root/"
+                href="http://localhost:1313/API-RateLimit-Workshop/2-preparation-steps/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/2-mfa-setup-for-aws-user-root/"
+                href="http://localhost:1313/API-RateLimit-Workshop/vi/2-preparation-steps/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/3-create-admin-user-and-group/</loc>
+    <loc>http://localhost:1313/API-RateLimit-Workshop/vi/5-create-eventbridge-schedule/5.2-create-eventbridge-schedule/</loc>
+    <lastmod>2025-09-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/API-RateLimit-Workshop/vi/3-create-api-usage-plan-api-key/3.2-create-usage-plan/</loc>
+    <lastmod>2025-09-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/API-RateLimit-Workshop/vi/3-create-api-usage-plan-api-key/3.3-create-api-key/</loc>
+    <lastmod>2025-09-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/API-RateLimit-Workshop/vi/3-create-api-usage-plan-api-key/</loc>
     <lastmod>2025-09-03T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/3-create-admin-user-and-group/"
+                href="http://localhost:1313/API-RateLimit-Workshop/3-create-api-usage-plan-api-key/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/3-create-admin-user-and-group/"
+                href="http://localhost:1313/API-RateLimit-Workshop/vi/3-create-api-usage-plan-api-key/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/2-mfa-setup-for-aws-user-root/3-other-hardware-mfa-device/</loc>
+    <loc>http://localhost:1313/API-RateLimit-Workshop/vi/4-create_authorizer/</loc>
     <lastmod>2025-09-03T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/2-mfa-setup-for-aws-user-root/3-other-hardware-mfa-device/"
+                href="http://localhost:1313/API-RateLimit-Workshop/4-create_authorizer/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/2-mfa-setup-for-aws-user-root/3-other-hardware-mfa-device/"
+                href="http://localhost:1313/API-RateLimit-Workshop/vi/4-create_authorizer/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/4-verify-new-account/</loc>
+    <loc>http://localhost:1313/API-RateLimit-Workshop/vi/5-create-eventbridge-schedule/</loc>
     <lastmod>2025-09-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/API-RateLimit-Workshop/vi/6-create-cloudwatch-alarm/</loc>
+    <lastmod>2025-09-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/API-RateLimit-Workshop/vi/6-create-cloudwatch-alarm/6.2-create-alarm/</loc>
+    <lastmod>2025-09-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/API-RateLimit-Workshop/vi/7-hosting-static-web-with-s3/</loc>
+    <lastmod>2025-09-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/API-RateLimit-Workshop/vi/8-clean-up/</loc>
+    <lastmod>2025-09-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/API-RateLimit-Workshop/vi/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/4-verify-new-account/"
+                href="http://localhost:1313/API-RateLimit-Workshop/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/4-verify-new-account/"
+                href="http://localhost:1313/API-RateLimit-Workshop/vi/categories/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/categories/</loc>
+    <loc>http://localhost:1313/API-RateLimit-Workshop/vi/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/categories/"
+                href="http://localhost:1313/API-RateLimit-Workshop/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/categories/"
-                />
-  </url><url>
-    <loc>//localhost:1313/vi/tags/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/tags/"
+                href="http://localhost:1313/API-RateLimit-Workshop/vi/tags/"
                 />
   </url>
 </urlset>

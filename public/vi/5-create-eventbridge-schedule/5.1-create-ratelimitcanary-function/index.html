@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+  <head><script src="/API-RateLimit-Workshop/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=API-RateLimit-Workshop/livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.147.8">
+    <meta name="description" content="Manage API Rate Limit And Throttling With Lambda Authorizer Workshop">
+<meta name="author" content="journeyoftheaverageguy@gmail.com">
+
+    <link rel="icon" href="../../../images/favicon.png" type="image/png">
+
+    <title>Tạo Lambda quản lý Stage API :: Quản lý Rate Limit và Throttling của API với Lambda Authorizer</title>
+
+    
+    <link href="../../../css/nucleus.css?1757016752" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1757016752" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1757016752" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1757016752" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1757016752" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1757016752" rel="stylesheet">
+    <link href="../../../css/atom-one-dark-reasonable.css?1757016752" rel="stylesheet">
+    <link href="../../../css/theme.css?1757016752" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1757016752" rel="stylesheet">
+    
+    <link href="../../../css/theme-workshop.css?1757016752" rel="stylesheet">
+    
+    
+
+    <script src="../../../js/jquery-3.3.1.min.js?1757016752"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="../../../vi/5-create-eventbridge-schedule/5.1-create-ratelimitcanary-function/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="../../../">
+
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f90;fill-rule:evenodd;}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"></path><path class="cls-2" d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"></path><path class="cls-2" d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"></path></svg>
+
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="../../../js/lunr.min.js?1757016752"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1757016752"></script>
+<script type="text/javascript">
+    
+        var baseurl = "http:\/\/localhost:1313\/API-RateLimit-Workshop\/\/vi";
+    
+</script>
+<script type="text/javascript" src="../../../js/search.js?1757016752"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/1-introduction/" title="Giới thiệu" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../../../vi/1-introduction/">
+           <b> 1. </b> Giới thiệu
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/2-preparation-steps/" title="Các bước chuẩn bị" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../../../vi/2-preparation-steps/">
+           <b> 2. </b> Các bước chuẩn bị
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/2-preparation-steps/1.1-create-basic-lambda-function/" title="Tạo các hàm Lambda cơ bản" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../../../vi/2-preparation-steps/1.1-create-basic-lambda-function/">
+           <b> 2.1 </b> Tạo các hàm Lambda cơ bản
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/2-preparation-steps/1.2-create-iam-role/" title="Tạo IAM Role" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../../../vi/2-preparation-steps/1.2-create-iam-role/">
+           <b> 2.1 </b> Tạo IAM Role
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-create-api-usage-plan-api-key/" title="Tạo API, Usage Plan, API Key" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../../../vi/3-create-api-usage-plan-api-key/">
+           <b> 3. </b> Tạo API, Usage Plan, API Key
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-create-api-usage-plan-api-key/3.1-create-api/" title="Tạo API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../../../vi/3-create-api-usage-plan-api-key/3.1-create-api/">
+           <b> 3.1 </b> Tạo API
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-create-api-usage-plan-api-key/3.2-create-usage-plan/" title="Tạo Usage Plan" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../../../vi/3-create-api-usage-plan-api-key/3.2-create-usage-plan/">
+           <b> 3.2 </b> Tạo Usage Plan
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-create-api-usage-plan-api-key/3.3-create-api-key/" title="Tạo API Key" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../../../vi/3-create-api-usage-plan-api-key/3.3-create-api-key/">
+           <b> 3.3 </b> Tạo API Key
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-create_authorizer/" title="Tạo Authorizer" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../../../vi/4-create_authorizer/">
+           <b> 4. </b> Tạo Authorizer
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-create-eventbridge-schedule/" title="Tạo EventBridge Schedule" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="../../../vi/5-create-eventbridge-schedule/">
+           <b> 5. </b> Tạo EventBridge Schedule
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-create-eventbridge-schedule/5.1-create-ratelimitcanary-function/" title="Tạo Lambda quản lý Stage API" class="dd-item 
+        
+        active
+        
+        ">
+      <a href="../../../vi/5-create-eventbridge-schedule/5.1-create-ratelimitcanary-function/">
+           <b> 5.1 </b> Tạo Lambda quản lý Stage API
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-create-eventbridge-schedule/5.2-create-eventbridge-schedule/" title="Tạo EventBridge Schedule" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../../../vi/5-create-eventbridge-schedule/5.2-create-eventbridge-schedule/">
+           <b> 5.2 </b> Tạo EventBridge Schedule
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/6-create-cloudwatch-alarm/" title="Tạo Cloudwatch Alarm" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../../../vi/6-create-cloudwatch-alarm/">
+           <b> 6. </b> Tạo Cloudwatch Alarm
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/6-create-cloudwatch-alarm/6.1-create-function-forcechangelimit/" title="Tạo Lambda Function ForceChangeLimit" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../../../vi/6-create-cloudwatch-alarm/6.1-create-function-forcechangelimit/">
+           <b> 6.1 </b> Tạo Lambda Function ForceChangeLimit
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/6-create-cloudwatch-alarm/6.2-create-alarm/" title="Tạo Cloudwatch Alarm và Dashboard" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../../../vi/6-create-cloudwatch-alarm/6.2-create-alarm/">
+           <b> 6. </b> Tạo Cloudwatch Alarm và Dashboard
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/7-hosting-static-web-with-s3/" title="Hosting web tĩnh với S3 Bucket" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../../../vi/7-hosting-static-web-with-s3/">
+           <b> 7. </b> Hosting web tĩnh với S3 Bucket
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/8-clean-up/" title="Dọn dẹp tài nguyên" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../../../vi/8-clean-up/">
+           <b> 8. </b> Dọn dẹp tài nguyên
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="http://awsstudygroup.com"><i class='fab fa-aws'></i> AWS Study Group - Blog</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj"><i class='fab fa-facebook'></i> AWS Study Group - Nhóm FB</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+          <div class="select-style">
+            <select id="select-language" onchange="location = this.value;">
+          
+          
+          
+              
+              
+                  
+              
+                  
+                    
+                    
+                      <option id="vi" value="http://localhost:1313/API-RateLimit-Workshop/vi/5-create-eventbridge-schedule/5.1-create-ratelimitcanary-function/" selected>Tiếng Việt</option>
+                    
+                  
+              
+          
+        </select>
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="255px" height="255px" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
+          <g>
+            <g id="arrow-drop-down">
+              <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+            </g>
+          </g>
+        </svg>
+        </div>
+        </a>
+        </li>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <left>
+    
+     <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830891&style=0038&nbdigits=9&type=page&initCount=0" title="Migrate" Alt="web counter"   border="0" /></a>  <br>
+     <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0" title="Total CLoud Journey" Alt="web counter"   border="0"   />
+     
+</left>
+<left>
+    <br>
+    <br>
+        <b> Last Updated </b> <br>
+        <i><font color=orange>3-9-2025</font></i>
+    </left>
+    <left>
+        <br>
+        <br>
+            <b> Team </b> <br>
+           
+            <i>
+                <a href="https://www.linkedin.com/in/jotaguy"  style="color:orange">Hồ Sỹ Phúc</a>
+        </i>
+        </left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/PVG341/API-RateLimit-Workshop5-Create-EventBridge-Schedule/5.1-Create-RateLimitCanary-Function/_index.vi.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../../../vi/'>API Rate Limit và Throttling với Lambda Authorizer</a> > <a href='../../../vi/5-create-eventbridge-schedule/'>Tạo EventBridge Schedule</a> > Tạo Lambda quản lý Stage API
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#tạo-lambda-function-ratelimitcanary">Tạo Lambda Function RateLimitCanary</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Tạo Lambda quản lý Stage API
+            </h1>
+          
+
+        
+
+
+
+	<p><strong>Nội dung:</strong></p>
+<ul>
+<li><a href="../../../vi/5-create-eventbridge-schedule/5.1-create-ratelimitcanary-function/#t%e1%ba%a1o-lambda-function-ratelimitcanary">Tạo Lambda Function RateLimitCanary</a></li>
+<li><a href="../../../vi/5-create-eventbridge-schedule/5.1-create-ratelimitcanary-function/#test-th%e1%bb%ad-lambda">Test thử Lambda</a></li>
+</ul>
+<h2 id="tạo-lambda-function-ratelimitcanary">Tạo Lambda Function RateLimitCanary</h2>
+<ul>
+<li>Truy cập dịch vụ <a href="https://console.aws.amazon.com/lambda/">Lambda</a></li>
+<li>Ấn vào <strong>Create function</strong></li>
+</ul>
+<p><img src="../../../images/2/0006.png?featherlight=false&amp;width=90pc" alt="Lambda Function"></p>
+<p>-Trong giao diện <strong>Create function</strong></p>
+<ul>
+<li>Chọn <strong>Author from scratch</strong></li>
+<li>Ở mục <strong>Function name</strong> nhập tên của funtion (RateLimitCanary)</li>
+<li>Chọn Runtime <strong>Python 3.13</strong></li>
+<li>Chọn Architecture x86_64</li>
+<li>Ấn <strong>Create function</strong></li>
+</ul>
+<p><img src="../../../images/5/0001.png?featherlight=false&amp;width=90pc" alt="Lambda Function"></p>
+<ul>
+<li>Trong giao diện code của Lambda Authorizer</li>
+<li>Lambda RateLimitCanary sẽ tự động cập nhật throttling (rate limit &amp; burst limit) cho một Stage trong AWS API Gateway thông qua dữ liệu JSON được gửi đến và thông báo kết quả (thành công hoặc lỗi) qua Slack webhook.</li>
+<li>Thay đổi đoạn code như sau:</li>
+</ul>
+
+<div class="notices info" ><p><strong>Xem cách tạo webhook Slack ở đây:</strong> <a href="https://000022.awsstudygroup.com/vi/2-prerequiste/2.4-incomingwebhooksslack/">https://000022.awsstudygroup.com/vi/2-prerequiste/2.4-incomingwebhooksslack/</a></p>
+</div>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> boto3
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> urllib3
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>webhook_url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://hooks.slack.com/services/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&#34;</span>
+</span></span><span style="display:flex;"><span>http <span style="color:#f92672">=</span> urllib3<span style="color:#f92672">.</span>PoolManager()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">send_slack_notification</span>(message, api_id, stage_name, rate_limit, burst_limit):
+</span></span><span style="display:flex;"><span>    payload <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;text&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;:rocket: *API Throttling Update* | API_ID: </span><span style="color:#e6db74">{</span>api_id<span style="color:#e6db74">}</span><span style="color:#e6db74"> | Stage: </span><span style="color:#e6db74">{</span>stage_name<span style="color:#e6db74">}</span><span style="color:#e6db74"> | Rate: </span><span style="color:#e6db74">{</span>rate_limit<span style="color:#e6db74">}</span><span style="color:#e6db74"> req/s | Burst: </span><span style="color:#e6db74">{</span>burst_limit<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;blocks&#34;</span>: [
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;section&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;text&#34;</span>: {
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;mrkdwn&#34;</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;text&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;*API Throttling Update*</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">*API_ID*: </span><span style="color:#e6db74">{</span>api_id<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">*Stage*: </span><span style="color:#e6db74">{</span>stage_name<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">*RateLimit*: </span><span style="color:#e6db74">{</span>rate_limit<span style="color:#e6db74">}</span><span style="color:#e6db74"> req/s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">*BurstLimit*: </span><span style="color:#e6db74">{</span>burst_limit<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        ]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        encoded_data <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>dumps(payload)<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#39;utf-8&#39;</span>)
+</span></span><span style="display:flex;"><span>        r <span style="color:#f92672">=</span> http<span style="color:#f92672">.</span>request(
+</span></span><span style="display:flex;"><span>            method<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;POST&#34;</span>,
+</span></span><span style="display:flex;"><span>            url<span style="color:#f92672">=</span>webhook_url,
+</span></span><span style="display:flex;"><span>            body<span style="color:#f92672">=</span>encoded_data,
+</span></span><span style="display:flex;"><span>            headers<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;Content-Type&#39;</span>: <span style="color:#e6db74">&#39;application/json&#39;</span>}
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> r<span style="color:#f92672">.</span>status <span style="color:#f92672">!=</span> <span style="color:#ae81ff">200</span>:
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Failed to send Slack notification: </span><span style="color:#e6db74">{</span>r<span style="color:#f92672">.</span>status<span style="color:#e6db74">}</span><span style="color:#e6db74">, </span><span style="color:#e6db74">{</span>r<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;utf-8&#39;</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">&#34;Slack notification sent successfully&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Error sending Slack notification: </span><span style="color:#e6db74">{</span>str(e)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">lambda_handler</span>(event, context):
+</span></span><span style="display:flex;"><span>    apigw <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>client(<span style="color:#e6db74">&#39;apigateway&#39;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Ưu tiên giá trị từ event, nếu không có thì lấy từ biến môi trường</span>
+</span></span><span style="display:flex;"><span>    api_id <span style="color:#f92672">=</span> event<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;API_ID&#39;</span>, os<span style="color:#f92672">.</span>environ<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;API_ID&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>))
+</span></span><span style="display:flex;"><span>    stage_name <span style="color:#f92672">=</span> event<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;STAGE_NAME&#39;</span>, os<span style="color:#f92672">.</span>environ<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;STAGE_NAME&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>))
+</span></span><span style="display:flex;"><span>    rate_limit <span style="color:#f92672">=</span> int(event<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;RATE_LIMIT&#39;</span>, os<span style="color:#f92672">.</span>environ<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;RATE_LIMIT&#39;</span>, <span style="color:#e6db74">&#39;100&#39;</span>)))
+</span></span><span style="display:flex;"><span>    burst_limit <span style="color:#f92672">=</span> int(event<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;BURST_LIMIT&#39;</span>, os<span style="color:#f92672">.</span>environ<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;BURST_LIMIT&#39;</span>, <span style="color:#e6db74">&#39;200&#39;</span>)))
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Kiểm tra nếu thiếu biến cần thiết</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> all([api_id, stage_name]):
+</span></span><span style="display:flex;"><span>        error_message <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Missing required parameters: API_ID or STAGE_NAME&#34;</span>
+</span></span><span style="display:flex;"><span>        send_slack_notification(error_message, api_id <span style="color:#f92672">or</span> <span style="color:#e6db74">&#34;N/A&#34;</span>, stage_name <span style="color:#f92672">or</span> <span style="color:#e6db74">&#34;N/A&#34;</span>, rate_limit, burst_limit)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(error_message)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        apigw<span style="color:#f92672">.</span>update_stage(
+</span></span><span style="display:flex;"><span>            restApiId<span style="color:#f92672">=</span>api_id,
+</span></span><span style="display:flex;"><span>            stageName<span style="color:#f92672">=</span>stage_name,
+</span></span><span style="display:flex;"><span>            patchOperations<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;op&#39;</span>: <span style="color:#e6db74">&#39;replace&#39;</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;path&#39;</span>: <span style="color:#e6db74">&#39;/*/*/throttling/rateLimit&#39;</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;value&#39;</span>: str(rate_limit)
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;op&#39;</span>: <span style="color:#e6db74">&#39;replace&#39;</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;path&#39;</span>: <span style="color:#e6db74">&#39;/*/*/throttling/burstLimit&#39;</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;value&#39;</span>: str(burst_limit)
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            ]
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Gửi thông báo Slack khi cập nhật thành công</span>
+</span></span><span style="display:flex;"><span>        message <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;API Gateway throttling updated: API_ID=</span><span style="color:#e6db74">{</span>api_id<span style="color:#e6db74">}</span><span style="color:#e6db74">, Stage=</span><span style="color:#e6db74">{</span>stage_name<span style="color:#e6db74">}</span><span style="color:#e6db74">, RateLimit=</span><span style="color:#e6db74">{</span>rate_limit<span style="color:#e6db74">}</span><span style="color:#e6db74"> req/s, BurstLimit=</span><span style="color:#e6db74">{</span>burst_limit<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        send_slack_notification(message, api_id, stage_name, rate_limit, burst_limit)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;statusCode&#39;</span>: <span style="color:#ae81ff">200</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;body&#39;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Updated throttling: rate=</span><span style="color:#e6db74">{</span>rate_limit<span style="color:#e6db74">}</span><span style="color:#e6db74">, burst=</span><span style="color:#e6db74">{</span>burst_limit<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Gửi thông báo Slack nếu có lỗi</span>
+</span></span><span style="display:flex;"><span>        error_message <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Error updating API Gateway throttling: </span><span style="color:#e6db74">{</span>str(e)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        send_slack_notification(error_message, api_id, stage_name, rate_limit, burst_limit)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> e
+</span></span></code></pre></div><ol>
+<li><strong>Các thư viện cần có</strong></li>
+</ol>
+<ul>
+<li><strong>boto3</strong>: SDK để gọi API AWS (ở đây dùng API Gateway)</li>
+<li><strong>urllib3</strong>: gửi request HTTP (dùng để gọi Slack webhook)</li>
+</ul>
+<ol start="2">
+<li>Hàm <strong>send_slack_notification</strong></li>
+</ol>
+<ul>
+<li>Gửi request POST tới webhook kèm thông báo</li>
+</ul>
+<ol start="3">
+<li>Hàm <strong>Lambda handler</strong></li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">lambda_handler</span>(event, context):
+</span></span><span style="display:flex;"><span>    apigw <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>client(<span style="color:#e6db74">&#39;apigateway&#39;</span>)
+</span></span></code></pre></div><ul>
+<li>Tạo client API Gateway để gọi các API update stage.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>    api_id <span style="color:#f92672">=</span> event<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;API_ID&#39;</span>, os<span style="color:#f92672">.</span>environ<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;API_ID&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>))
+</span></span><span style="display:flex;"><span>    stage_name <span style="color:#f92672">=</span> event<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;STAGE_NAME&#39;</span>, os<span style="color:#f92672">.</span>environ<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;STAGE_NAME&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>))
+</span></span><span style="display:flex;"><span>    rate_limit <span style="color:#f92672">=</span> int(event<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;RATE_LIMIT&#39;</span>, os<span style="color:#f92672">.</span>environ<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;RATE_LIMIT&#39;</span>, <span style="color:#e6db74">&#39;100&#39;</span>)))
+</span></span><span style="display:flex;"><span>    burst_limit <span style="color:#f92672">=</span> int(event<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;BURST_LIMIT&#39;</span>, os<span style="color:#f92672">.</span>environ<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;BURST_LIMIT&#39;</span>, <span style="color:#e6db74">&#39;200&#39;</span>)))
+</span></span></code></pre></div><ul>
+<li>Ưu tiên lấy giá trị từ event (payload khi invoke Lambda).</li>
+<li>Nếu không có → fallback sang biến môi trường.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> all([api_id, stage_name]):
+</span></span><span style="display:flex;"><span>        error_message <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Missing required parameters: API_ID or STAGE_NAME&#34;</span>
+</span></span><span style="display:flex;"><span>        send_slack_notification(error_message, api_id <span style="color:#f92672">or</span> <span style="color:#e6db74">&#34;N/A&#34;</span>, stage_name <span style="color:#f92672">or</span> <span style="color:#e6db74">&#34;N/A&#34;</span>, rate_limit, burst_limit)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(error_message)
+</span></span></code></pre></div><ul>
+<li>Nếu thiếu API_ID hoặc STAGE_NAME → báo lỗi Slack + raise exception.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>apigw<span style="color:#f92672">.</span>update_stage(
+</span></span><span style="display:flex;"><span>        restApiId<span style="color:#f92672">=</span>api_id,
+</span></span><span style="display:flex;"><span>        stageName<span style="color:#f92672">=</span>stage_name,
+</span></span><span style="display:flex;"><span>        patchOperations<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>            {<span style="color:#e6db74">&#39;op&#39;</span>: <span style="color:#e6db74">&#39;replace&#39;</span>,<span style="color:#e6db74">&#39;path&#39;</span>: <span style="color:#e6db74">&#39;/*/*/throttling/rateLimit&#39;</span>,<span style="color:#e6db74">&#39;value&#39;</span>: str(rate_limit)},
+</span></span><span style="display:flex;"><span>            {<span style="color:#e6db74">&#39;op&#39;</span>: <span style="color:#e6db74">&#39;replace&#39;</span>,<span style="color:#e6db74">&#39;path&#39;</span>: <span style="color:#e6db74">&#39;/*/*/throttling/burstLimit&#39;</span>,<span style="color:#e6db74">&#39;value&#39;</span>: str(burst_limit)}
+</span></span><span style="display:flex;"><span>        ]
+</span></span><span style="display:flex;"><span>    )
+</span></span></code></pre></div><ul>
+<li>Gọi API update_stage của API Gateway để thay đổi config.</li>
+</ul>
+<h4 id="test-thử-lambda">Test thử Lambda</h4>
+<ul>
+<li>Trong giao diện của Lambda function RateLimitCanary, chọn tab <strong>Test</strong></li>
+<li>Chọn <strong>Create new event</strong></li>
+<li>Dán các giá trị JSON sau và ấn <strong>Test</strong>:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{ <span style="color:#f92672">&#34;API_ID&#34;</span>:<span style="color:#e6db74">&#34;jbjfqykyob&#34;</span>, <span style="color:#f92672">&#34;STAGE_NAME&#34;</span>:<span style="color:#e6db74">&#34;test&#34;</span>, <span style="color:#f92672">&#34;RATE_LIMIT&#34;</span>:<span style="color:#ae81ff">50</span>, <span style="color:#f92672">&#34;BURST_LIMIT&#34;</span>:<span style="color:#ae81ff">100</span> }
+</span></span></code></pre></div><p><img src="../../../images/5/0002.png?featherlight=false&amp;width=90pc" alt="Lambda Function"></p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../../../vi/5-create-eventbridge-schedule/" title="Tạo EventBridge Schedule"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../../../vi/5-create-eventbridge-schedule/5.2-create-eventbridge-schedule/" title="Tạo EventBridge Schedule" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../../../js/clipboard.min.js?1757016752"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1757016752"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1757016752"></script>
+    <script src="../../../js/jquery.sticky.js?1757016752"></script>
+    <script src="../../../js/featherlight.min.js?1757016752"></script>
+    <script src="../../../js/highlight.pack.js?1757016752"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1757016752"></script>
+    <script src="../../../js/learn.js?1757016752"></script>
+    <script src="../../../js/hugo-learn.js?1757016752"></script>
+
+    <link href="../../../mermaid/mermaid.css?1757016752" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.js?1757016752"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-158079754-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>
