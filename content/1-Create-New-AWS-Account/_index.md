@@ -1,6 +1,6 @@
 ---
 title : "Create new AWS account"
-date : "`r Sys.Date()`"
+date : "2025-09-03"
 weight : 1
 chapter : false
 pre : " <b> 1. </b> "

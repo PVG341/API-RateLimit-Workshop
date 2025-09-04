@@ -1,6 +1,6 @@
 ---
 title : "Thiết lập Tài Khoản AWS"
-date :  "`r Sys.Date()`" 
+date :  "2025-09-03" 
 weight : 1 
 chapter : false
 ---

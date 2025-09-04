@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" class="js csstransforms3d">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.99.1" />
+    <meta name="generator" content="Hugo 0.147.8">
     <meta name="description" content="">
 <meta name="author" content="journeyoftheaverageguy@gmail.com">
 
@@ -12,21 +12,21 @@
     <title>Update the AWS account :: Create a new AWS account.</title>
 
     
-    <link href="/css/nucleus.css?1704686315" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1704686315" rel="stylesheet">
-    <link href="/css/hybrid.css?1704686315" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1704686315" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1704686315" rel="stylesheet">
-    <link href="/css/auto-complete.css?1704686315" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1704686315" rel="stylesheet">
-    <link href="/css/theme.css?1704686315" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1704686315" rel="stylesheet">
+    <link href="/css/nucleus.css?1756920139" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1756920139" rel="stylesheet">
+    <link href="/css/hybrid.css?1756920139" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1756920139" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1756920139" rel="stylesheet">
+    <link href="/css/auto-complete.css?1756920139" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1756920139" rel="stylesheet">
+    <link href="/css/theme.css?1756920139" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1756920139" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1704686315" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1756920139" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1704686315"></script>
+    <script src="/js/jquery-3.3.1.min.js?1756920139"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1704686315"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1704686315"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1756920139"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1756920139"></script>
 <script type="text/javascript">
     
-        var baseurl = "";
+        var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1704686315"></script>
+<script type="text/javascript" src="/js/search.js?1756920139"></script>
 
     
   </div>
@@ -142,7 +142,7 @@
   
     
     <li data-nav-id="/1-create-new-aws-account/1.2-update-account/" title="Update the AWS account" class="dd-item 
-        parent
+        
         active
         
         ">
@@ -437,7 +437,7 @@
                   
                     
                     
-                      <option id="en" value="/1-create-new-aws-account/1.2-update-account/" selected>English</option>
+                      <option id="en" value="//localhost:1313/1-create-new-aws-account/1.2-update-account/" selected>English</option>
                     
                   
               
@@ -578,8 +578,7 @@
 <h4 id="editing-aws-account-information">Editing AWS Account Information</h4>
 <p>To make changes to your AWS account&rsquo;s name, root user&rsquo;s password, or root user&rsquo;s email address, follow the steps below. Your email address and password serve as credentials for signing in as the AWS account root user.</p>
 <blockquote>
-<p><strong>Note:</strong> Changes made to an AWS account may take up to four hours to propagate across all services.</p>
-</blockquote>
+<p><strong>Note:</strong> Changes made to an AWS account may take up to four hours to propagate across all services.</p></blockquote>
 <h4 id="editing-account-name-root-user-password-or-email-address">Editing Account Name, Root User Password, or Email Address</h4>
 <p><strong>Minimum Permissions:</strong>
 To proceed with the following steps, you need to have at least the following IAM permissions:</p>
@@ -596,8 +595,7 @@ To proceed with the following steps, you need to have at least the following IAM
 <li>
 <p>On the Account page, locate &ldquo;Account settings&rdquo; and click &ldquo;Edit.&rdquo; You will be prompted to re-authenticate for security reasons.</p>
 <blockquote>
-<p><strong>Note:</strong> If the &ldquo;Edit&rdquo; option is not visible, it indicates that you are not logged in as the root user of your AWS account. Account settings cannot be modified while signed in as an IAM user or role.</p>
-</blockquote>
+<p><strong>Note:</strong> If the &ldquo;Edit&rdquo; option is not visible, it indicates that you are not logged in as the root user of your AWS account. Account settings cannot be modified while signed in as an IAM user or role.</p></blockquote>
 </li>
 <li>
 <p>On the &ldquo;Update Account Settings&rdquo; page, choose &ldquo;Edit&rdquo; next to the field you wish to update.</p>
@@ -605,14 +603,12 @@ To proceed with the following steps, you need to have at least the following IAM
 <li>
 <p>For <strong>Name</strong>: On the &ldquo;Update Your Account Name&rdquo; page, enter the new account name in the &ldquo;New account name&rdquo; field, then click &ldquo;Save changes.&rdquo;</p>
 <blockquote>
-<p><strong>Note:</strong> If you encounter issues modifying the AWS account name, check if there&rsquo;s a Service Control Policy (SCP) within AWS Organizations that restricts access to &ldquo;aws-portal&rdquo; or denies the &ldquo;iam:UpdateAccountName&rdquo; action.</p>
-</blockquote>
+<p><strong>Note:</strong> If you encounter issues modifying the AWS account name, check if there&rsquo;s a Service Control Policy (SCP) within AWS Organizations that restricts access to &ldquo;aws-portal&rdquo; or denies the &ldquo;iam:UpdateAccountName&rdquo; action.</p></blockquote>
 </li>
 <li>
 <p>For <strong>Email</strong>: On the &ldquo;Update Your Email Address&rdquo; page, provide the required information for &ldquo;New email address,&rdquo; &ldquo;Confirm new email address,&rdquo; and confirm your current password. Afterward, click &ldquo;Save changes.&rdquo; A verification code will be sent to your new email address from &ldquo;<a href="mailto:no-reply@verify.signin.aws">no-reply@verify.signin.aws</a>.&rdquo; On the &ldquo;Verify Your New Email Address&rdquo; page, enter the verification code you received via email, then click &ldquo;Save changes.&rdquo;</p>
 <blockquote>
-<p><strong>Note:</strong> The verification code may take up to 5 minutes to arrive. If you don&rsquo;t find the email in your inbox, remember to check your spam and junk folders.</p>
-</blockquote>
+<p><strong>Note:</strong> The verification code may take up to 5 minutes to arrive. If you don&rsquo;t find the email in your inbox, remember to check your spam and junk folders.</p></blockquote>
 </li>
 <li>
 <p>For <strong>Password</strong>: On the &ldquo;Update Your Password&rdquo; page, fill in the fields for &ldquo;Current password,&rdquo; &ldquo;New password,&rdquo; and &ldquo;Confirm new password.&rdquo; Then, click &ldquo;Save changes.&rdquo; For additional guidance and best practices regarding root user password management, refer to <a href="link-to-documentation">Change the Password for the AWS Account Root User</a>.</p>
@@ -869,19 +865,19 @@ To proceed with the following steps, you need to have at least the following IAM
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1704686315"></script>
-    <script src="/js/perfect-scrollbar.min.js?1704686315"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1704686315"></script>
-    <script src="/js/jquery.sticky.js?1704686315"></script>
-    <script src="/js/featherlight.min.js?1704686315"></script>
-    <script src="/js/highlight.pack.js?1704686315"></script>
+    <script src="/js/clipboard.min.js?1756920139"></script>
+    <script src="/js/perfect-scrollbar.min.js?1756920139"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1756920139"></script>
+    <script src="/js/jquery.sticky.js?1756920139"></script>
+    <script src="/js/featherlight.min.js?1756920139"></script>
+    <script src="/js/highlight.pack.js?1756920139"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1704686315"></script>
-    <script src="/js/learn.js?1704686315"></script>
-    <script src="/js/hugo-learn.js?1704686315"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1756920139"></script>
+    <script src="/js/learn.js?1756920139"></script>
+    <script src="/js/hugo-learn.js?1756920139"></script>
 
-    <link href="/mermaid/mermaid.css?1704686315" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1704686315"></script>
+    <link href="/mermaid/mermaid.css?1756920139" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1756920139"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

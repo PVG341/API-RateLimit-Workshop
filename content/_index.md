@@ -1,6 +1,6 @@
 ---
 title : "Setting up an AWS account"
-date :  "`r Sys.Date()`" 
+date :  "2025-09-03" 
 weight : 1 
 chapter : false
 ---

@@ -1,6 +1,6 @@
 ---
 title : "Create or update your AWS account alias"
-date : "`r Sys.Date()`"
+date : "2025-09-03"
 weight : 3
 chapter : false
 pre : " <b> 1.3 </b> "

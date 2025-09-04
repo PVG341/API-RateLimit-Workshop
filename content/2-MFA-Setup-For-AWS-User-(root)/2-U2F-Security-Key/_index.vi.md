@@ -1,6 +1,6 @@
 ---
 title : "Khóa bảo mật U2F"
-date :  "`r Sys.Date()`" 
+date :  "2025-09-03" 
 weight : 2
 chapter : false
 pre : " <b> 2.2 </b> "
