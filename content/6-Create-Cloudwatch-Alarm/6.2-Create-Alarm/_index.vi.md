@@ -3,7 +3,7 @@ title : "Tạo Cloudwatch Alarm và Dashboard"
 date :  "2025-09-03" 
 weight : 6
 chapter : false
-pre : " <b> 6. </b> "
+pre : " <b> 6.2 </b> "
 ---
 
 **Nội dung:**

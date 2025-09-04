@@ -1,37 +1,37 @@
 ---
-title : "Tạo Lambda quản lý Stage API"
+title : "Create Lambda to Manage API Stage"
 date :  "2025-09-03" 
 weight : 1
 chapter : false
 pre : " <b> 5.1 </b> "
 ---
 
-**Nội dung:**
-- [Tạo Lambda Function RateLimitCanary](#tạo-lambda-function-ratelimitcanary)
-- [Test thử Lambda](#test-thử-lambda)
+**Contents:**
+- [Create RateLimitCanary Lambda Function](#create-ratelimitcanary-lambda-function)
+- [Test the Lambda](#test-the-lambda)
 
-## Tạo Lambda Function RateLimitCanary
+## Create RateLimitCanary Lambda Function
 
-- Truy cập dịch vụ [Lambda](https://console.aws.amazon.com/lambda/)
-- Ấn vào **Create function**
+- Go to the [Lambda](https://console.aws.amazon.com/lambda/) service
+- Click **Create function**
 
 ![Lambda Function](/images/2/0006.png?featherlight=false&width=90pc)
 
--Trong giao diện **Create function**
-- Chọn **Author from scratch**
-- Ở mục **Function name** nhập tên của funtion (RateLimitCanary)
-- Chọn Runtime **Python 3.13**
-- Chọn Architecture x86_64
-- Ấn **Create function**
+- In the **Create function** interface:
+- Select **Author from scratch**
+- In **Function name**, enter the function name (RateLimitCanary)
+- Select Runtime **Python 3.13**
+- Select Architecture **x86_64**
+- Click **Create function**
 
 ![Lambda Function](/images/5/0001.png?featherlight=false&width=90pc)
 
-- Trong giao diện code của Lambda Authorizer
-- Lambda RateLimitCanary sẽ tự động cập nhật throttling (rate limit & burst limit) cho một Stage trong AWS API Gateway thông qua dữ liệu JSON được gửi đến và thông báo kết quả (thành công hoặc lỗi) qua Slack webhook.
-- Thay đổi đoạn code như sau:
+- In the code editor of the Lambda function:
+- The **RateLimitCanary Lambda** will automatically update throttling (rate limit & burst limit) for a Stage in AWS API Gateway using JSON data sent to it, and send the result (success or error) via a Slack webhook.
+- Replace the code with the following:
 
 {{% notice info %}}
-**Xem cách tạo webhook Slack ở đây:** https://000022.awsstudygroup.com/vi/2-prerequiste/2.4-incomingwebhooksslack/
+**See how to create a Slack webhook here:** https://000022.awsstudygroup.com/vi/2-prerequiste/2.4-incomingwebhooksslack/
 {{% /notice %}}
 
 ```python
@@ -118,20 +118,22 @@ def lambda_handler(event, context):
         send_slack_notification(error_message, api_id, stage_name, rate_limit, burst_limit)
         raise e
 ```
-1. **Các thư viện cần có**
-- **boto3**: SDK để gọi API AWS (ở đây dùng API Gateway)
-- **urllib3**: gửi request HTTP (dùng để gọi Slack webhook)
 
-2. Hàm **send_slack_notification**
-- Gửi request POST tới webhook kèm thông báo
+1. **Required Libraries**
+- **boto3**: SDK to call AWS APIs (here we use API Gateway)
+- **urllib3**: to send HTTP requests (used to call Slack webhook)
 
-3. Hàm **Lambda handler**
+2. **send_slack_notification function**
+- Sends a POST request to the webhook with a notification
+
+3. **Lambda handler function**
 
 ```python
 def lambda_handler(event, context):
     apigw = boto3.client('apigateway')
 ```
-- Tạo client API Gateway để gọi các API update stage.
+
+- Creates an API Gateway client to call the update stage API
 
 ```python
     api_id = event.get('API_ID', os.environ.get('API_ID', ''))
@@ -140,8 +142,8 @@ def lambda_handler(event, context):
     burst_limit = int(event.get('BURST_LIMIT', os.environ.get('BURST_LIMIT', '200')))
 ```
 
-- Ưu tiên lấy giá trị từ event (payload khi invoke Lambda).
-- Nếu không có → fallback sang biến môi trường.
+- Prefers values from the event (payload when invoking Lambda)
+- If not found → fallback to environment variables
 
 ```python
 if not all([api_id, stage_name]):
@@ -150,7 +152,7 @@ if not all([api_id, stage_name]):
         raise ValueError(error_message)
 ```
 
-- Nếu thiếu API_ID hoặc STAGE_NAME → báo lỗi Slack + raise exception.
+- If API_ID or STAGE_NAME is missing → send error to Slack + raise exception
 
 ```python
 apigw.update_stage(
@@ -161,16 +163,14 @@ apigw.update_stage(
             {'op': 'replace','path': '/*/*/throttling/burstLimit','value': str(burst_limit)}
         ]
     )
-```
-- Gọi API update_stage của API Gateway để thay đổi config.
 
+- Calls API Gateway’s **update_stage** API to change the configuration
 
+#### Test the Lambda
 
-#### Test thử Lambda
-
-- Trong giao diện của Lambda function RateLimitCanary, chọn tab **Test**
-- Chọn **Create new event**
-- Dán các giá trị JSON sau và ấn **Test**:
+- In the interface of the RateLimitCanary Lambda function, select the **Test** tab
+- Choose **Create new event**
+- Paste the following JSON values and click **Test**:
 
 ```json
 { "API_ID":"jbjfqykyob", "STAGE_NAME":"test", "RATE_LIMIT":50, "BURST_LIMIT":100 }

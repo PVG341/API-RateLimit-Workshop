@@ -1,74 +1,49 @@
 ---
-title : "View AWS account identifiers"
-date : "2025-09-03"
+title : "Create Basic Lambda Functions"
+date :  "2025-09-03" 
 weight : 1
 chapter : false
-pre : " <b> 1.1 </b> "
+pre : " <b> 2.1 </b> "
 ---
 
-#### View AWS account identifiers
-
-#### Finding your account ID as the root user
-
-You can find the AWS account ID using either the **AWS Management Console** or the **AWS Command Line Interface** (AWS CLI). In the console, the location of the account ID depends on whether you're signed in as the root user or an IAM user. The account ID remains the same whether you're signed in as the root user or an IAM user.
-
-#### Minimum Permissions
-
-To perform the following steps, you must have at least the following IAM permissions:
-
-- When you sign in as the root user, you don't need any IAM permissions.
-- In the navigation bar on the upper right, choose your account name or number and then choose **Security credentials**.
-
-**Tip:** If you don't see the **Security credentials** option, you might be signed in as a federated user with an IAM role, instead of as an IAM user. In this case, look for the entry **Account** and the account ID number next to it.
-
-Under the **Account details** section, the account number appears next to **AWS account ID**.
-
-#### Finding Your AWS Account ID as an IAM User
-
-#### Minimum Permissions
-
-To perform the following steps, you must have at least the following IAM permission:
-
-- `aws-portal:ViewAccount`
-
-1. In the navigation bar on the upper right, choose your user name and then choose **Security credentials**.
-
-   > **Tip:** If you don't see the **Security credentials** option, you might be signed in as a federated user with an IAM role, instead of as an IAM user. In this case, look for the entry **Account** and the account ID number next to it.
-
-2. At the top of the page, under **Account details**, the account number appears next to **AWS account ID**.
+**Contents:**
+- [Create Basic Lambda Functions](#create-lambda-functions-for-methods)
 
 
-#### Find the canonical user ID for your AWS account
+## Create Lambda Functions for Methods
 
-You can find the canonical user ID for your AWS account using the AWS Management Console or the AWS CLI. The canonical user ID for an AWS account is specific to that account. You can retrieve the canonical user ID for your AWS account as the root user, a federated user, or an IAM user.
+1. Go to the [Lambda](https://console.aws.amazon.com/lambda/) service.
 
-#### Find the canonical ID as the root user or IAM user
+- Click **Create function**
 
-To find the canonical user ID for your account when signed in to the console as the root user or an IAM user:
+![AWS Lambda](/images/2/0006.png?featherlight=false&width=90pc)
 
-**Minimum permissions:**
+2. Create the Lambda Function **UserFunction**
 
-To perform the following steps, you must have at least the following IAM permissions:
+2.1. In the **Create function** interface:
 
-- When you run the command as the root user, you don't need any IAM permissions.
-- When you sign in as an IAM user, then you must have:
-  - `aws-portal:ViewAccount`
+- Select **Author from scratch**  
+- In **Function name**, enter the function name (UserFunction)  
+- Select Runtime **Python 3.13**  
+- Select Architecture **x86_64**  
+- Click **Create function**
 
-1. Sign in to the AWS Management Console as the root user or an IAM user.
-2. In the navigation bar on the upper right, choose your account name or number, and then choose "Security credentials".
+![AWS Lambda](/images/2/0002.png?featherlight=false&width=90pc)
 
-   > **Tip:** If you don't see the "Security credentials" option, you might be signed in as a federated user with an IAM role, instead of as an IAM user. In this case, look for the entry "Account" and the account ID number next to it.
+2.2. In the Lambda Function code editor:
 
-3. Under the "Account details" section, the canonical user ID appears next to "Canonical user ID". You can use your canonical user ID to configure Amazon S3 access control lists (ACLs).
+- Modify the content of **json.dumb** for easier identification.
 
-#### Find the canonical ID as a federated user with an IAM role
+![AWS Lambda](/images/2/0003.png?featherlight=false&width=90pc)
 
-To find the canonical ID for your account when signed in to the console as a federated user with an IAM role
+3. Create the Lambda Function **PremiumUserFunction**
 
-#### Minimum Permissions
-You must have permission to list and view an Amazon S3 bucket.
+- Follow the same steps as above.
 
-1. Sign in to the AWS Management Console as a federated user with an IAM role.
-2. In the Amazon S3 console, choose a bucket name to view details about a bucket.
-3. Choose the Permissions tab.
-4. In the Access control list section, under Bucket owner, the canonical ID for your AWS account appears.
+![AWS Lambda](/images/2/0004.png?featherlight=false&width=90pc)
+
+4. Create the Lambda Function **devFunction**
+
+- Follow the same steps as above.
+
+![AWS Lambda](/images/2/0005.png?featherlight=false&width=90pc)

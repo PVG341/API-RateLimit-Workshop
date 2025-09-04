@@ -1,18 +1,18 @@
 ---
-title : "Hosting web tĩnh với S3 Bucket"
+title : "Hosting Static Website with S3 Bucket"
 date :  "2025-09-03" 
 weight : 7
 chapter : false
 pre : " <b> 7. </b> "
 ---
 
-**Nội dung:**
-1. [Tạo các tài nguyên cho web](#tạo-các-tài-nguyên-cho-web)
-2. [Tạo S3 bucket và hosting](#tạo-s3-bucket-và-hosting)
+**Contents:**
+1. [Create web resources](#create-web-resources)
+2. [Create S3 bucket and hosting](#create-s3-bucket-and-hosting)
 
-## Tạo các tài nguyên cho web
+## Create web resources
 
-- Tạo file HTML:
+- Create an HTML file
 
 ```html
 <!DOCTYPE html>
@@ -24,19 +24,19 @@ pre : " <b> 7. </b> "
 </head>
 <body>
   <h2>Chọn loại người dùng:</h2>
-  <!-- Sử dụng các token được thiết lập trong Lambda Authorizer -->
+  <!--  Replace with your token which was used in Authorizer -->
   <button onclick="setUser('normalUser')">Normal User</button>
   <button onclick="setUser('premiumUser')">Premium User</button>
   <button onclick="setUser('devs')">Developer</button>
 
   <h2>Chọn API Key</h2>
-  <!-- Sử dụng API Key cho các loại người dùng của bạn -->
+  <!--  Replace with your API Keys -->
   <button onclick="setApiKey('ZIqUUal5OIaV6ldWfPU4WaFfWMnCDoAQ5kES3MCU')">Normal User</button>
   <button onclick="setApiKey('jYpAYtUYQA3BNUknsLaaD4iovwvKgOBJ4XyD5Cd2')">Premium User</button>
   <button onclick="setApiKey('0H8E24Q6dtacxEBGtK5p87p7c2fjX0cheH0Shmv8')">Developer</button>
 
   <h2>Chọn Route</h2>
-  <!-- Sử dụng Resource của bạn -->
+  <!-- Replace with your Resource -->
   <button onclick="setURL('Users')">Normal User</button>
   <button onclick="setURL('PremiumUsers')">Premium User</button>
   <button onclick="setURL('Devs')">Developer</button>
@@ -52,7 +52,7 @@ pre : " <b> 7. </b> "
     let currentToken = "";
     let currentApiKey = "";
     let currentPath = "";
-    // Thay thế bằng URL stage của bạn
+    // Replace with your URL
     const baseURL = "https://jbjfqykyob.execute-api.ap-southeast-2.amazonaws.com/test/";
 
     function setUser(token) {
@@ -99,7 +99,7 @@ pre : " <b> 7. </b> "
 </html>
 ```
 
-- Tạo file CSS (tùy chọn):
+- Create a CSS file (optional)
 
 ```css
 /* Reset default margins and padding */
@@ -195,46 +195,46 @@ pre#response {
 }
 ```
 
-## Tạo S3 bucket và hosting
+## Create S3 bucket and hosting
 
-- Truy cập dịch vụ [S3](https://console.aws.amazon.com/s3/home)
-- Ấn vào **Create bucket**
+- Go to [S3](https://console.aws.amazon.com/s3/home)
+- Click **Create bucket**
 
 ![S3 bucket](/images/8/0001.png?featherlight=false&width=90pc)
 
-- Đặt tên cho bucket ở **Bucket name** và ấn **Create bucket**
+- Enter a name in **Bucket name** and click **Create bucket**
 
 ![S3 bucket](/images/8/0002.png?featherlight=false&width=90pc)
 
-1. Thêm file vào bucket
-- Truy cập bucket vừa tạo và ấn vào **Upload**
+1. Add files to the bucket
+- Open the newly created bucket and click **Upload**
 
 ![S3 bucket](/images/8/0003.png?featherlight=false&width=90pc)
 
-- Ấn vào **Add files** để thêm các file cần thiết
-- Ấn **Upload**
+- Click **Add files** to upload the required files  
+- Click **Upload**
 
 ![S3 bucket](/images/8/0004.png?featherlight=false&width=90pc)
 
 2. Enable Static website hosting
 
-- Vào tab **Properties** của bucket
+- Go to the bucket’s **Properties** tab
 
 ![S3 bucket](/images/8/0005.png?featherlight=false&width=90pc)
 
-- Tìm và Enable **Static website hosting**
-- Chọn **Hosting type** là **Host a static website**
-- **Index document** là file Index.html
+- Find and enable **Static website hosting**
+- Select **Hosting type** as **Host a static website**
+- Set **Index document** to your `index.html` file
 
 ![S3 bucket](/images/8/0006.png?featherlight=false&width=90pc)
 
-3. Bỏ chặn public access
-- Vào tab **Permissions**, tìm và tắt **Block public access (bucket settings)**
+3. Disable public access block
+- Go to the **Permissions** tab and turn off **Block public access (bucket settings)**
 
 ![S3 bucket](/images/8/0007.png?featherlight=false&width=90pc)
 
-4. Thêm bucket policy
-- Vào tab **Permissions** → Bucket policy và dán (thay **api-rate-limit-web/** bằng tên bucket của bạn):
+4. Add a bucket policy
+- Go to **Permissions** → **Bucket policy** and paste your policy (replace **api-rate-limit-web/** with your bucket name):
 
 ```json
 {
