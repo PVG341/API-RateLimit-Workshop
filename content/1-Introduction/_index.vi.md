@@ -11,7 +11,8 @@ pre : " <b> 1. </b> "
 
 Đây là workshop về API Rate Limiting và Throttling trên AWS sử dụng Lambda Authorizers để kiểm soát truy cập và bảo vệ hệ thống API. Trong đó, Lambda Authorizers được xây dựng nhằm thực thi custom rate limiting logic, cho phép áp dụng giới hạn động (dynamic limits) dựa trên loại người dùng. Tiếp theo, Xây dựng API dựa vào AWS API Gateway, thiết lập Resource, Method, Usage Plan và API Key. Tích hợp với CloudWatch, EventBridge để thiết lập monitoring và alerting, giúp phát hiện sớm các bất thường và đưa ra cảnh báo kịp thời.
 
-[Project Test Link](https://aws.amazon.com/support/)
+[Project S3 Link](http://api-rate-limit-web.s3-website-ap-southeast-2.amazonaws.com/)
+[Project Proposal](https://docs.google.com/document/d/1X52AMno0pRGWW17u35ubVdvPTFvYAeik/edit?usp=drive_link&ouid=116677375895548588303&rtpof=true&sd=true)
 
 ![AWS Support](/images/1/0001.png?featherlight=false&width=90pc)
 
