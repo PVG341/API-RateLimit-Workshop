@@ -1,3 +1,7 @@
+baseURL = "https://pvg341.github.io/API-RateLimit-Workshop/"
+canonifyURLs = true
+relativeURLs = true
+
 # Change the default theme to be use when building the site with Hugo
 theme = "hugo-theme-learn"
 
@@ -9,8 +13,8 @@ home = [ "HTML", "RSS", "JSON"]
   # Change default color scheme with a variant one. Can be "red", "blue", "green".
   themeVariant = "workshop"
   # Git hub repo link
-  editURL = ""
-  description = ""
+  editURL = "https://github.com/PVG341/API-RateLimit-Workshop"
+  description = "Manage API Rate Limit And Throttling With Lambda Authorizer Workshop"
   author = "journeyoftheaverageguy@gmail.com"
   showVisitedLinks = true
   disableBreadcrumb = false
@@ -18,7 +22,7 @@ home = [ "HTML", "RSS", "JSON"]
   
 [Languages]
 [Languages.en]
-title = "Create a new AWS account."
+title = "Manage API Rate Limit And Throttling With Lambda Authorizer"
 weight = 1
 languageName = "English"
 
@@ -35,7 +39,7 @@ url = "https://www.facebook.com/groups/awsstudygroupfcj"
 weight = 20
 
 [Languages.vi]
-title = "Tạo mới tài khoản AWS"
+title = "Quản lý Rate Limit và Throttling của API với Lambda Authorizer"
 weight = 2
 languageName = "Tiếng Việt"
 
