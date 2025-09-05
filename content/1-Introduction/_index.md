@@ -10,7 +10,9 @@ pre : " <b> 1. </b> "
 
 This is a workshop on API Rate Limiting and Throttling on AWS using Lambda Authorizers to control access and protect API systems. Lambda Authorizers are implemented to enforce custom rate limiting logic, allowing the application of dynamic limits based on user types. Next, the workshop covers building APIs with AWS API Gateway, setting up Resources, Methods, Usage Plans, and API Keys. It also integrates with CloudWatch and EventBridge to establish monitoring and alerting, helping detect anomalies early and trigger timely notifications.
 
-[Project Test Link](https://aws.amazon.com/support/)
+[Project Test Link](http://api-rate-limit-web.s3-website-ap-southeast-2.amazonaws.com/)
+[Project Proposal](https://docs.google.com/document/d/1X52AMno0pRGWW17u35ubVdvPTFvYAeik/edit?usp=drive_link&ouid=116677375895548588303&rtpof=true&sd=true)
+
 
 ![AWS Support](/images/1/0001.png?featherlight=false&width=90pc)
 
